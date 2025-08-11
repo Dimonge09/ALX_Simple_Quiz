@@ -1,53 +1,48 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('registration-form');
-  const feedbackDiv = document.getElementById('form-feedback');
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
 
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
+#quiz-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-    const username = document.getElementById('username').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
+#quiz-question {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
 
-    let isValid = true;
-    const messages = [];
+input[type="radio"] {
+    margin-right: 10px;
+}
 
-    // Step 1: Username validation
-    if (username.length < 3) {
-      isValid = false;
-      messages.push('Username must be at least 3 characters long.');
-    }
+label {
+    margin-right: 30px;
+    cursor: pointer;
+}
 
-    // Step 2: Email validation
-    if (!(email.includes('@') && email.includes('.'))) {
-      isValid = false;
-      messages.push('Please enter a valid email address containing "@" and ".".');
-    }
-    if (email.includes('@')) {
-      const atIndex = email.indexOf('@');
-      const dotAfterAt = email.indexOf('.', atIndex);
-      if (dotAfterAt === -1) {
-        isValid = false;
-        messages.push('Please enter a valid email address (dot should come after @).');
-      }
-    }
+#submit-answer {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-    // Step 3: Password validation
-    if (password.length < 8) {
-      isValid = false;
-      messages.push('Password must be at least 8 characters long.');
-    }
+#submit-answer:hover {
+    background-color: #0056b3;
+}
 
-    // Show feedback
-    feedbackDiv.style.display = 'block';
-    if (isValid) {
-      feedbackDiv.style.color = '#155724';
-      feedbackDiv.style.backgroundColor = '#d4edda';
-      feedbackDiv.textContent = 'Registration successful!';
-    } else {
-      feedbackDiv.style.color = '#721c24';
-      feedbackDiv.style.backgroundColor = '#f8d7da';
-      feedbackDiv.innerHTML = messages.join('<br>');
-    }
-  });
-});
+#feedback {
+    margin-top: 20px;
+    font-size: 18px;
+}
